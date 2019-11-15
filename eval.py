@@ -120,6 +120,14 @@ def parse_args(argv=None):
     if args.seed is not None:
         random.seed(args.seed)
 
+    args.trained_model = '/home/zhaog/dgx3/pyVAF/pyVAF_model_zoo/yolact/yolact_car_b1_v1/yolact_darknet53_129_20000.pth'
+    args.images= '/home/zhaog/dgx3/yard_of_future/data/images/b2/YOF5D0_f/hg-2019-08-20_11.18.42/:/home/zhaog/dgx3/yard_of_future/data/output/YOF5D0_f/hg-2019-08-20_11.18.42_2/'
+    args.config = 'yolact_darknet53_config'
+    args.dataset = 'yof_railcar_b2_dataset'
+    args.fast_nms = False
+    args.score_threshold = 0.3
+
+
 iou_thresholds = [x / 100 for x in range(50, 100, 5)]
 coco_cats = {} # Call prep_coco_cats to fill this
 coco_cats_inv = {}
