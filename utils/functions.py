@@ -1,4 +1,3 @@
-
 import torch
 import os
 import math
@@ -42,6 +41,9 @@ class MovingAverage():
     
     def __repr__(self):
         return repr(self.get_avg())
+    
+    def __len__(self):
+        return len(self.window)
 
 
 class ProgressBar():
