@@ -68,6 +68,11 @@ parser.add_argument('--dataset', default=None, type=str,
 
 parser.set_defaults(keep_latest=False)
 args = parser.parse_args()
+args.dataset = 'yof_railcar_b2_dataset'
+args.save_folder = 'C:/Users/212406793/Desktop/_projects/pyVAF/pyVAF_model_zoo/yolact/yolact_car_b1_v1/'
+args.pretrain_folder = 'C:/Users/212406793/Desktop/_projects/pyVAF/pyVAF_model_zoo/yolact/pretrained/'
+args.config = 'yolact_darknet53_config'
+args.batch_size = 2
 
 if args.config is not None:
     set_cfg(args.config)
@@ -162,7 +167,7 @@ def train():
             args.start_iter = SavePath.from_str(args.resume).iteration
     else:
         print('Initializing weights...')
-        yolact_net.init_weights(backbone_path=args.save_folder + cfg.backbone.path)
+        yolact_net.init_weights(backbone_path=args.pretrain_folder + cfg.backbone.path)
 
     optimizer = optim.SGD(net.parameters(), lr=args.lr, momentum=args.momentum,
                           weight_decay=args.decay)

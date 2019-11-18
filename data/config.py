@@ -54,7 +54,8 @@ COCO_LABEL_MAP = { 1:  1,  2:  2,  3:  3,  4:  4,  5:  5,  6:  6,  7:  7,  8:  8
                   74: 65, 75: 66, 76: 67, 77: 68, 78: 69, 79: 70, 80: 71, 81: 72,
                   82: 73, 84: 74, 85: 75, 86: 76, 87: 77, 88: 78, 89: 79, 90: 80}
 
-
+Railcar_CLASSES = ('Auto_carrier', 'Boxcar', 'Centerbeam', 'Covered_Coil_Gondola', 'Engine', 'Flatcar', 'Gondola', 'Hopper', 'Intermodal', 'Not_Sure', 'Tank')
+Railcar_LABEL_MAP = dict(zip(range(len(Railcar_CLASSES)), range(len(Railcar_CLASSES))))
 
 # ----------------------- CONFIG CLASS ----------------------- #
 
@@ -126,6 +127,18 @@ dataset_base = Config({
     # provide a map from category_id -> index in class_names + 1 (the +1 is there because it's 1-indexed).
     # If not specified, this just assumes category ids start at 1 and increase sequentially.
     'label_map': None
+})
+
+yof_railcar_b2_dataset = dataset_base.copy({
+    'name': 'yof_railcar_b2',
+
+    'train_images': 'C:/Users/212406793/Desktop/_projects/yard_of_future/data/anno/car_11types_b1_poly/',
+    'valid_images': 'C:/Users/212406793/Desktop/_projects/yard_of_future/data/anno/car_11types_b1_poly/',
+    'train_info': 'C:/Users/212406793/Desktop/_projects/yard_of_future/data/anno/car_11types_b1_poly/coco_gt_train_train.json',
+    'valid_info': 'C:/Users/212406793/Desktop/_projects/yard_of_future/data/anno/car_11types_b1_poly/coco_gt_train_val.json',
+
+    'label_map': Railcar_LABEL_MAP,
+    'class_names': Railcar_CLASSES
 })
 
 coco2014_dataset = dataset_base.copy({
