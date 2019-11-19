@@ -81,14 +81,19 @@ parser.add_argument('--no_autoscale', dest='autoscale', action='store_false',
 
 parser.set_defaults(keep_latest=False, log=True, log_gpu=False, interrupt=True, autoscale=True)
 args = parser.parse_args()
-args.dataset = 'yof_railcar_b2_dataset'
-args.save_folder = '/home/zhaog/dgx3/pyVAF/pyVAF_model_zoo/yolact/yolact_carlogo_b1b2/'
+args.dataset = 'yof_carlogo_b1b2_dataset'
+args.save_folder = '/home/zhaog/dgx3/pyVAF/pyVAF_model_zoo/yolact/yolact_carlogo_b1b2_v3/'
+args.log_folder = args.save_folder
+args.log = True
 args.pretrain_folder = '/home/zhaog/dgx3/pyVAF/pyVAF_model_zoo/yolact/pretrained/'
 args.config = 'yolact_darknet53_config'
-args.batch_size = 64 #72
+args.batch_size = 96
+args.num_workers= int(args.batch_size / 4)   # dgx has huge memory
+# os.environ['CUDA_VISIBLE_DEVICES'] = '0,1,6,7'  # choose gpu
 args.resume='interrupt'
 args.start_iter = -1
 args.validation_epoch=-1
+args.save_interval=2000
 
 if args.config is not None:
     set_cfg(args.config)

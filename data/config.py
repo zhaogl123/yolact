@@ -54,8 +54,6 @@ COCO_LABEL_MAP = { 1:  1,  2:  2,  3:  3,  4:  4,  5:  5,  6:  6,  7:  7,  8:  8
                   74: 65, 75: 66, 76: 67, 77: 68, 78: 69, 79: 70, 80: 71, 81: 72,
                   82: 73, 84: 74, 85: 75, 86: 76, 87: 77, 88: 78, 89: 79, 90: 80}
 
-Railcar_CLASSES = ('Auto_carrier', 'Boxcar', 'Centerbeam', 'Covered_Coil_Gondola', 'Engine', 'Flatcar', 'Gondola', 'Hopper', 'Intermodal', 'Not_Sure', 'Tank')
-Railcar_LABEL_MAP = dict(zip(range(len(Railcar_CLASSES)), range(len(Railcar_CLASSES))))
 
 # ----------------------- CONFIG CLASS ----------------------- #
 
@@ -129,6 +127,8 @@ dataset_base = Config({
     'label_map': None
 })
 
+Railcar_CLASSES = ('Auto_carrier', 'Boxcar', 'Centerbeam', 'Covered_Coil_Gondola', 'Engine', 'Flatcar', 'Gondola', 'Hopper', 'Intermodal', 'Not_Sure', 'Tank')
+Railcar_LABEL_MAP = dict(zip(range(len(Railcar_CLASSES)), range(len(Railcar_CLASSES))))
 yof_railcar_b2_dataset = dataset_base.copy({
     'name': 'yof_railcar_b2',
 
@@ -141,16 +141,21 @@ yof_railcar_b2_dataset = dataset_base.copy({
     'class_names': Railcar_CLASSES
 })
 
+CarLogo_CLASSES = ["Agrium","Boxcar","CANADA","CANPOTEX","CARGILL","CornProducts","covered coil gondola","CPR",
+           "CP Rail","DM&E", "ElastoFlo","Engine","Flatcar","GATX","GOC","Gondola","HAWKEYE","Hopper","Intermodal",
+           "Iowa Northern","MCP","MDT","MISSOURI PACIFIC LINES","mo-pac","North Western","NS","Others","POTASH CORP",
+           "PROCOR","RailGon","spe","Staley","Tank","TFM","TTX","UNION PACIFIC","VeraSun ENERGY", "ignore"]
+CarLogo_LABEL_MAP = dict(zip(range(1, 1+len(CarLogo_CLASSES)), range(1, 1+len(CarLogo_CLASSES))))
 yof_carlogo_b1b2_dataset = dataset_base.copy({
     'name': 'yof_carlogo_b1b2',
 
     'train_images': '',
-    'valid_images': '/home/zhaog/dgx3/yard_of_future/data/anno/car_11types_b1_poly/',
+    'valid_images': '',
     'train_info': '/raid/guang/yard_of_future/data/anno/b1b2/coco_labels_poly.json',
     'valid_info': '',
 
-    'label_map': Railcar_LABEL_MAP,
-    'class_names': Railcar_CLASSES
+    'label_map': CarLogo_LABEL_MAP,
+    'class_names': CarLogo_CLASSES
 })
 
 coco2014_dataset = dataset_base.copy({
