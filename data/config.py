@@ -769,6 +769,13 @@ yolact_resnet50_pascal_config = yolact_resnet50_config.copy({
 
 # Default config
 cfg = yolact_base_config.copy()
+config_name      = 'yolact_darknet53_config'
+if cfg.name is None:
+    cfg.name = config_name.split('_config')[0]
+cfg.replace(eval(config_name))
+dataset_name        = 'yof_carlogo_b1b2_dataset'
+cfg.dataset = eval(dataset_name)
+cfg.mask_proto_debug = False
 
 def set_cfg(config_name:str):
     """ Sets the active config. Works even if cfg is already imported! """
